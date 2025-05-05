@@ -4,4 +4,23 @@
 body {
   margin: 0;
   padding: 0;
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  place-content: center;
 }
+.container {
+  width: 500px;
+  padding: 2em;
+  background-color: #dd6e50;
+  color: #fffdfd;
+  border-radius: 16px;
+  height: 600px;
+}
+/* 
+    black color #dd6e50
+    orange normal color #f48265
+    star color #fdee75
+    lens color #ffbaa8
+    titles color #fffdfd
+*/

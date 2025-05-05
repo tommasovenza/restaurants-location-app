@@ -15,6 +15,10 @@ function swipe(e) {
     e.target.classList.contains('row')
   ) {
     e.target.closest('.row').classList.toggle('active')
+    e.target
+      .closest('.row-wrapper')
+      .querySelector('.row-hidden-section')
+      .classList.toggle('active')
   }
 
   console.log(e.target)

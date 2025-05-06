@@ -1,8 +1,63 @@
+import { data } from './data.js'
 const menu = document.querySelector('#menu')
 const closeBtn = document.querySelector('.close-btn')
 const lensIcon = document.querySelector('.fa-solid.fa-magnifying-glass')
 const inputSearch = document.querySelector('.input-search')
 const container = document.querySelector('#app')
+
+function printRestaurant(data) {
+  console.log(data)
+  const rowContainer = document.querySelector('#row-container')
+
+  // loop
+  data.map((item, index) => {
+    const rowWrapper = document.createElement('div')
+    rowWrapper.classList.add('row-wrapper')
+    rowWrapper.innerHTML = `
+    <div class="row-hidden-section">
+      <div class="order">
+        <i class="fa-solid fa-phone"></i>
+        <span>Order</span>
+      </div>
+      <div class="bookmark">
+        <i class="fa-regular fa-bookmark"></i>
+        <span class="span-bookmark">Bookmark</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="rest-pic" style="background-image: url(${item.image})"></div>
+      <div class="rest-texts">
+        <div class="rest-title">
+          <h3 class="title">${item.title}</h3>
+        </div>
+        <div class="rest-stars">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+        </div>
+        <div class="rest-tags">
+          <div class="tag">${item.tag[0]}</div>
+          <div class="tag">${item.tag[1]}</div>
+          <div class="tag">${item.tag[2]}</div>
+        </div>
+      </div>
+    
+      <div class="distance">
+        <div class="icon-distance">
+          <i class="fa-solid fa-arrows-turn-right"></i>
+        </div>
+        <div class="real-distance">
+          <span class="distance-desc">${item.distance}</span>
+        </div>
+      </div>
+    </div>
+  `
+    rowContainer.appendChild(rowWrapper)
+  })
+}
 
 function openSearchBar(e) {
   console.log(e.target)
@@ -64,6 +119,8 @@ function init() {
   menu.addEventListener('click', movePanel)
   closeBtn.addEventListener('click', closePanel)
   lensIcon.addEventListener('click', openSearchBar)
+
+  printRestaurant(data)
 }
 
 document.addEventListener('DOMContentLoaded', init)

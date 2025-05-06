@@ -124,7 +124,7 @@ img {
   height: 70px;
   border-radius: 50%;
   background-size: cover;
-  background-image: url(img/image.jpg);
+  /* background-image: url(img/image.jpg); */
 }
 .row .rest-texts {
   flex-grow: 1;
@@ -157,6 +157,7 @@ img {
 .external-panel {
   transition: 0.4s;
   position: absolute;
+  opacity: 0;
   left: -100%;
   background-color: #fdd6aa;
   color: #41352f;
@@ -168,6 +169,7 @@ img {
 }
 .external-panel.active {
   left: 0;
+  opacity: 1;
 }
 .close-btn {
   float: right;

@@ -1,5 +1,14 @@
 const menu = document.querySelector('#menu')
+const closeBtn = document.querySelector('.close-btn')
 const container = document.querySelector('#app')
+
+function movePanel() {
+  document.querySelector('.external-panel').classList.add('active')
+}
+
+function closePanel() {
+  document.querySelector('.external-panel').classList.remove('active')
+}
 
 function swipe(e) {
   if (
@@ -43,6 +52,8 @@ function swipe(e) {
 
 function init() {
   container.addEventListener('click', swipe)
+  menu.addEventListener('click', movePanel)
+  closeBtn.addEventListener('click', closePanel)
 }
 
 document.addEventListener('DOMContentLoaded', init)

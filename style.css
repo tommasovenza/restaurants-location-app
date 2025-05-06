@@ -46,6 +46,23 @@ img {
   border-top-right-radius: 16px;
   border-top-left-radius: 16px;
 }
+.header .menu,
+.header .search {
+  cursor: pointer;
+}
+
+.header .input-search {
+  width: 0;
+  opacity: 0;
+  transition: 0.4s;
+  border: none;
+  border-radius: 0.2em;
+  padding: 0.2em 0.5em;
+}
+.header .input-search:focus {
+  border: none;
+  outline: none;
+}
 .row-container {
   overflow: scroll;
   max-height: 600px;

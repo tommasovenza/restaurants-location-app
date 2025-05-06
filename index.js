@@ -1,6 +1,15 @@
 const menu = document.querySelector('#menu')
 const closeBtn = document.querySelector('.close-btn')
+const lensIcon = document.querySelector('.fa-solid.fa-magnifying-glass')
+const inputSearch = document.querySelector('.input-search')
 const container = document.querySelector('#app')
+
+function openSearchBar(e) {
+  console.log(e.target)
+  inputSearch.style.width = '100px'
+  inputSearch.style.opacity = '1'
+  lensIcon.style.display = 'none'
+}
 
 function movePanel() {
   document.querySelector('.external-panel').classList.add('active')
@@ -54,6 +63,7 @@ function init() {
   container.addEventListener('click', swipe)
   menu.addEventListener('click', movePanel)
   closeBtn.addEventListener('click', closePanel)
+  lensIcon.addEventListener('click', openSearchBar)
 }
 
 document.addEventListener('DOMContentLoaded', init)

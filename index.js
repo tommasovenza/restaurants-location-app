@@ -3,10 +3,76 @@ const menu = document.querySelector('#menu')
 const closeBtn = document.querySelector('.close-btn')
 const lensIcon = document.querySelector('.fa-solid.fa-magnifying-glass')
 const inputSearch = document.querySelector('.input-search')
-const container = document.querySelector('#app')
+const rowContainer = document.querySelector('#row-container')
+const tagGrid = document.querySelector('.tag-grid')
+const btnConfirm = document.querySelector('.submit')
+let selectedTagFromGrid = []
+
+function filterUsingTagGrid() {
+  closePanel()
+  console.log(selectedTagFromGrid)
+}
+
+function chooseFilterTags(e) {
+  // console.log(e.target)
+  if (e.target.classList.contains('tag')) {
+    let tag = e.target.textContent
+    if (!selectedTagFromGrid.includes(tag)) {
+      selectedTagFromGrid.push(tag)
+      e.target.classList.add('selected')
+    } else {
+      selectedTagFromGrid = selectedTagFromGrid.filter(item => item !== tag)
+      e.target.classList.remove('selected')
+    }
+  }
+}
+
+function createTagGrid(data) {
+  const tags = []
+  // getting all tags
+  data.forEach(item => {
+    const currentTags = item.tag
+    currentTags.forEach(tag => {
+      if (!tags.includes(tag)) {
+        tags.push(tag)
+      }
+    })
+  })
+
+  // printing
+  tags.map(tag => {
+    const newTag = document.createElement('button')
+    newTag.classList.add('tag')
+    newTag.textContent = tag
+    tagGrid.appendChild(newTag)
+  })
+}
+
+function filterRestaurants() {
+  let word = inputSearch.value.trim().toLowerCase()
+  const allRows = document.querySelectorAll('.row-wrapper')
+
+  allRows.forEach(row => {
+    const tags = row.querySelectorAll('.tag')
+    let matchFound = false
+
+    tags.forEach(tag => {
+      const tagText = tag.textContent.trim().toLowerCase()
+      if (tagText.includes(word)) {
+        matchFound = true
+      }
+    })
+
+    if (matchFound) {
+      row.classList.remove('d-none') // mostra la riga se almeno un tag corrisponde
+    } else {
+      row.classList.add('d-none') // nascondi la riga altrimenti
+    }
+  })
+}
 
 function printRestaurant(data) {
-  console.log(data)
+  // console.log(data)
   const rowContainer = document.querySelector('#row-container')
 
   // loop
@@ -115,12 +181,20 @@ function swipe(e) {
 }
 
 function init() {
-  container.addEventListener('click', swipe)
+  // print
+  printRestaurant(data)
+  createTagGrid(data)
+  // listeners
+  rowContainer.addEventListener('click', swipe)
   menu.addEventListener('click', movePanel)
   closeBtn.addEventListener('click', closePanel)
   lensIcon.addEventListener('click', openSearchBar)
+  btnConfirm.addEventListener('click', filterUsingTagGrid)
 
-  printRestaurant(data)
+  setTimeout(() => {
+    inputSearch.addEventListener('input', filterRestaurants)
+    tagGrid.addEventListener('click', chooseFilterTags)
+  }, 100)
 }
 
 document.addEventListener('DOMContentLoaded', init)

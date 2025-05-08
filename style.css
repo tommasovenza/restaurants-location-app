@@ -171,6 +171,20 @@ img {
   left: 0;
   opacity: 1;
 }
+.external-panel .btn-wrapper > button {
+  width: 100%;
+  background-color: #dd6e50;
+  color: #333;
+  padding: 1em;
+  padding-bottom: 1em;
+  border: none;
+  border-radius: 0.2em;
+  cursor: pointer;
+}
+.external-panel .btn-wrapper > button:hover {
+  background-color: #64b5f3;
+}
+
 .close-btn {
   float: right;
   cursor: pointer;
@@ -182,7 +196,6 @@ img {
 .tag-grid {
   padding: 1em 0;
   width: 100%;
-  height: 90%;
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(3, minmax(100px, 1fr));
@@ -200,4 +213,12 @@ img {
 .tag-grid .tag:hover {
   background-color: #41352f;
   color: #fff;
+}
+.tag-grid .tag.selected {
+  background-color: #41352f;
+  color: #fff;
+}
+
+.d-none {
+  display: none;
 }

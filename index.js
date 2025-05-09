@@ -9,19 +9,49 @@ const btnConfirm = document.querySelector('.submit')
 let selectedTagFromGrid = []
 
 function filterUsingTagGrid() {
+  // closing panel
   closePanel()
   console.log(selectedTagFromGrid)
+  // getting rows
+  const allRows = document.querySelectorAll('.row-wrapper')
+  // foreach row
+  allRows.forEach(row => {
+    const tagsElement = row.querySelectorAll('.tag')
+    let matchFound = false
+
+    tagsElement.forEach(tagsElement => {
+      const tag = tagsElement.textContent.trim().toLowerCase()
+      console.log(tag)
+      if (selectedTagFromGrid.includes(tag)) {
+        matchFound = true
+        console.log(matchFound)
+      }
+    })
+
+    if (matchFound) {
+      row.classList.remove('d-none')
+    } else {
+      // console.log(row)
+      row.classList.add('d-none')
+    }
+  })
+
+  // filterRestaurants(true)
 }
 
 function chooseFilterTags(e) {
   // console.log(e.target)
   if (e.target.classList.contains('tag')) {
-    let tag = e.target.textContent
+    // formatting tag
+    let tag = e.target.textContent.trim().toLowerCase()
+    // pushing tags if there are not just inside array
     if (!selectedTagFromGrid.includes(tag)) {
       selectedTagFromGrid.push(tag)
+      // adding colors and class selected for user exp
       e.target.classList.add('selected')
     } else {
       selectedTagFromGrid = selectedTagFromGrid.filter(item => item !== tag)
+      // adding colors and class selected for user exp
       e.target.classList.remove('selected')
     }
   }
@@ -49,8 +79,9 @@ function createTagGrid(data) {
 }
 
 function filterRestaurants() {
-  let word = inputSearch.value.trim().toLowerCase()
   const allRows = document.querySelectorAll('.row-wrapper')
+
+  let word = inputSearch.value.trim().toLowerCase()
 
   allRows.forEach(row => {
     const tags = row.querySelectorAll('.tag')
@@ -181,10 +212,11 @@ function swipe(e) {
 }
 
 function init() {
-  // print
+  // print data
   printRestaurant(data)
+  // create grid in panel
   createTagGrid(data)
-  // listeners
+  // add events listener
   rowContainer.addEventListener('click', swipe)
   menu.addEventListener('click', movePanel)
   closeBtn.addEventListener('click', closePanel)

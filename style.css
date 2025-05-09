@@ -29,7 +29,7 @@ img {
 /* Main APP */
 .app {
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 .container {
   font-size: 1.2em;
@@ -124,7 +124,6 @@ img {
   height: 70px;
   border-radius: 50%;
   background-size: cover;
-  /* background-image: url(img/image.jpg); */
 }
 .row .rest-texts {
   flex-grow: 1;
@@ -162,7 +161,6 @@ img {
   background-color: #fdd6aa;
   color: #41352f;
   width: 100%;
-  height: 100%;
   padding: 2em;
   border-radius: 1em;
   z-index: 2;
